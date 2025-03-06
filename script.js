@@ -56,6 +56,19 @@ const trollMessages = [
     "К сожалению, категория выбрана неверно. Иди в пизду, гнилой пидор, не умеющий даже читать, жалкий хуй с ушами!"
 ];
 
+const closeMessages = [
+    "Чат закрывается… Пошёл ты на хуй, пидорас вонючий!",
+    "До свидания, ебаный ты пиздец, гандон сутулый!",
+    "Чат закрыт. Пиздец тебе, хуйло тупорылое, вали отсюда!",
+    "Всё, пиздец, чат закрыт, мудак сраный, пидор конченый!",
+    "Чат закрыт. Иди в жопу, гнида ёбаная, хуй тебе в рыло!",
+    "Чат закрыт. Пшёл нахуй, уёбище криворукое, пиздец тебе!",
+    "Чат закрыт. Вали в пиздец, хуесос гнойный, мразь сутулая!",
+    "Чат закрыт. Пошёл в очко, пидорас тупой, хуй тебе в глотку!",
+    "Чат закрыт. Пиздец тебе, гандон вшивый, урод ебучий!",
+    "Чат закрыт. Иди нахуй, мудила ссаная, пиздец тебе, дебил!"
+];
+
 let currentStep = 0;
 let chatBox = document.getElementById('chat-box');
 let optionsDiv = document.getElementById('options');
@@ -105,7 +118,11 @@ function selectOption(selectedCategory) {
             setTimeout(() => {
                 let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
                 addMessage(trollMessage);
-                disableOptions(); // Отключаем кнопки после закрытия чата
+                setTimeout(() => {
+                    let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
+                    addMessage(closeMessage);
+                    disableOptions(); // Отключаем кнопки после закрытия чата
+                }, 3000); // Задержка перед закрытием чата
             }, 3000); // Задержка перед троллингом
         }, 3000); // Задержка перед обещанием помощи
     } else {
@@ -113,6 +130,8 @@ function selectOption(selectedCategory) {
         let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
         addMessage(trollMessage);
         setTimeout(() => {
+            let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
+            addMessage(closeMessage);
             disableOptions(); // Отключаем кнопки после закрытия чата
         }, 3000); // Задержка перед закрытием чата
     }
