@@ -112,6 +112,22 @@ body {
     transform: scale(1.02);
 }
 
+.author {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #ffeb3b;
+}
+
+.author a {
+    color: #ffeb3b;
+    text-decoration: none;
+}
+
+.author a:hover {
+    text-decoration: underline;
+}
+
 @keyframes fadeIn {
     to {
         opacity: 1;
