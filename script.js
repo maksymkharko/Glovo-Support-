@@ -131,9 +131,7 @@ function selectOption(selectedCategory) {
             setTimeout(() => {
                 let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
                 addMessage(closeMessage);
-                setTimeout(() => {
-                    resetGame();
-                }, 10000); // Перезапуск игры через 10 секунд
+                disableOptions(); // Отключаем кнопки после закрытия чата
             }, 3000); // Задержка перед закрытием чата
         }, 3000); // Задержка перед троллингом
     } else {
@@ -143,11 +141,14 @@ function selectOption(selectedCategory) {
         setTimeout(() => {
             let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
             addMessage(closeMessage);
-            setTimeout(() => {
-                resetGame();
-            }, 10000); // Перезапуск игры через 10 секунд
+            disableOptions(); // Отключаем кнопки после закрытия чата
         }, 3000); // Задержка перед закрытием чата
     }
+}
+
+function disableOptions() {
+    optionsDiv.innerHTML = ''; // Убираем кнопки выбора
+    newChatButton.style.display = 'block'; // Показываем кнопку "Начать новый чат"
 }
 
 function resetGame() {
@@ -157,6 +158,7 @@ function resetGame() {
     reasonText.textContent = getRandomReason();
     addMessage("Добрый день! Чем мы можем вам помочь?");
     showOptions();
+    newChatButton.style.display = 'none'; // Скрываем кнопку "Начать новый чат"
 }
 
 newChatButton.addEventListener('click', resetGame);
@@ -165,6 +167,7 @@ function init() {
     reasonText.textContent = getRandomReason();
     addMessage("Добрый день! Чем мы можем вам помочь?");
     showOptions();
+    newChatButton.style.display = 'none'; // Скрываем кнопку "Начать новый чат" в начале
 }
 
 init();
