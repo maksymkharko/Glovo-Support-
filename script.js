@@ -1,30 +1,34 @@
 const reasons = [
-    "У меня сломалась машина",
-    "Клиент не поднимает трубку",
-    "Заведение долго делает заказ",
+    "Не могу найти клиента",
+    "Не могу найти ресторан",
+    "Заведение долго готовит заказ",
     "У меня недостаточно наличных",
-    "Курьер потерял мой заказ",
-    "Я не могу войти в аккаунт",
-    "Мой заказ пришёл холодным",
-    "Я хочу вернуть деньги",
-    "Мой заказ не соответствует описанию",
+    "Клиент не отвечает на звонки",
+    "Проблема с оплатой заказа",
+    "Заказ не соответствует описанию",
     "Курьер опоздал на 2 часа",
     "Я получил не свой заказ",
-    "У меня проблемы с оплатой"
+    "Проблемы с приложением",
+    "Не могу войти в аккаунт",
+    "Заказ отменён, но деньги не вернули",
+    "Клиент отказался от заказа",
+    "Ресторан закрыт",
+    "Неправильный адрес доставки",
+    "Заказ уже забрал другой курьер",
+    "Проблемы с картой оплаты",
+    "Заказ слишком большой для моей сумки",
+    "Клиент не может найти меня",
+    "Проблемы с навигацией"
 ];
 
 const categories = [
-    "Техническая поддержка",
     "Проблемы с доставкой",
     "Проблемы с заказом",
     "Финансовые вопросы",
-    "Проблемы с курьером",
+    "Проблемы с клиентом",
+    "Проблемы с рестораном",
+    "Технические проблемы",
     "Проблемы с аккаунтом",
-    "Качество заказа",
-    "Возврат средств",
-    "Проблемы с меню",
-    "Проблемы с оплатой",
-    "Проблемы с приложением",
     "Другое"
 ];
 
@@ -83,6 +87,7 @@ let currentStep = 0;
 let chatBox = document.getElementById('chat-box');
 let optionsDiv = document.getElementById('options');
 let reasonText = document.getElementById('reason-text');
+let newChatButton = document.getElementById('new-chat-button');
 
 function getRandomReason() {
     return reasons[Math.floor(Math.random() * reasons.length)];
@@ -127,24 +132,10 @@ function selectOption(selectedCategory) {
                 let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
                 addMessage(closeMessage);
                 setTimeout(() => {
-                    chatBox.innerHTML = '';
-                    optionsDiv.innerHTML = '';
-                    currentStep++;
-                    if (currentStep < 5) {
-                        setTimeout(() => {
-                            reasonText.textContent = getRandomReason();
-                            addMessage("Добрый день! Чем мы можем вам помочь?");
-                            showOptions();
-                        }, 5000); // Задержка перед открытием нового чата
-                    } else {
-                        addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
-                        setTimeout(() => {
-                            resetGame();
-                        }, 10000); // Перезапуск игры через 10 секунд
-                    }
-                }, 1000);
-            }, 2000);
-        }, 2000);
+                    resetGame();
+                }, 10000); // Перезапуск игры через 10 секунд
+            }, 3000); // Задержка перед закрытием чата
+        }, 3000); // Задержка перед троллингом
     } else {
         // Обычный троллинг
         let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
@@ -153,23 +144,9 @@ function selectOption(selectedCategory) {
             let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
             addMessage(closeMessage);
             setTimeout(() => {
-                chatBox.innerHTML = '';
-                optionsDiv.innerHTML = '';
-                currentStep++;
-                if (currentStep < 5) {
-                    setTimeout(() => {
-                        reasonText.textContent = getRandomReason();
-                        addMessage("Добрый день! Чем мы можем вам помочь?");
-                        showOptions();
-                    }, 5000); // Задержка перед открытием нового чата
-                } else {
-                    addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
-                    setTimeout(() => {
-                        resetGame();
-                    }, 10000); // Перезапуск игры через 10 секунд
-                }
-            }, 1000);
-        }, 2000);
+                resetGame();
+            }, 10000); // Перезапуск игры через 10 секунд
+        }, 3000); // Задержка перед закрытием чата
     }
 }
 
@@ -181,6 +158,8 @@ function resetGame() {
     addMessage("Добрый день! Чем мы можем вам помочь?");
     showOptions();
 }
+
+newChatButton.addEventListener('click', resetGame);
 
 function init() {
     reasonText.textContent = getRandomReason();
