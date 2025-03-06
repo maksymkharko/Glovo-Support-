@@ -43,7 +43,12 @@ const trollMessages = [
     "Выбирайте быстрее, у меня обед через 5 минут... Шучу, я бот, мне не нужен обед.",
     "Вы думаете, что сможете выбрать правильно? Ха-ха, нет.",
     "Выбирайте, выбирайте... Всё равно ошибётесь.",
-    "Я бы вам помог, но вы выбрали не ту категорию. Иди нахуй, короче."
+    "Я бы вам помог, но вы выбрали не ту категорию. Иди нахуй, короче.",
+    "Вы вообще читаете, что выбираете? Видимо, нет.",
+    "Выбирайте быстрее, у меня другие клиенты ждут... Шучу, я бот, мне похуй.",
+    "Вы думаете, что я вам помогу? Ха-ха, нет.",
+    "Выбирайте, выбирайте... Всё равно закрою чат.",
+    "Вы почти угадали! Шучу, вы опять облажались."
 ];
 
 const fakeHelpMessages = [
@@ -61,7 +66,11 @@ const closeMessages = [
     "Чат закрыт. Попробуйте ещё раз, если хватит терпения.",
     "Всё, я ухожу. Выбирайте быстрее в следующий раз.",
     "Чат закрыт. Вы слишком медлительны.",
-    "Чат закрыт. Идите нахуй."
+    "Чат закрыт. Идите нахуй.",
+    "Чат закрыт. Выбирайте быстрее, если не тупой.",
+    "Чат закрыт. Вы опять облажались.",
+    "Чат закрыт. Попробуйте ещё раз, если не лох.",
+    "Чат закрыт. Выбирайте быстрее, если не дебил."
 ];
 
 let currentStep = 0;
@@ -108,4 +117,54 @@ function selectOption(selectedCategory) {
         setTimeout(() => {
             let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
             addMessage(trollMessage);
-            setTimeout(() =>
+            setTimeout(() => {
+                let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
+                addMessage(closeMessage);
+                setTimeout(() => {
+                    chatBox.innerHTML = '';
+                    optionsDiv.innerHTML = '';
+                    currentStep++;
+                    if (currentStep < 5) {
+                        setTimeout(() => {
+                            reasonText.textContent = getRandomReason();
+                            addMessage("Добрый день! Чем мы можем вам помочь?");
+                            showOptions();
+                        }, 5000); // Задержка перед открытием нового чата
+                    } else {
+                        addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
+                    }
+                }, 1000);
+            }, 2000);
+        }, 2000);
+    } else {
+        // Обычный троллинг
+        let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
+        addMessage(trollMessage);
+        setTimeout(() => {
+            let closeMessage = closeMessages[Math.floor(Math.random() * closeMessages.length)];
+            addMessage(closeMessage);
+            setTimeout(() => {
+                chatBox.innerHTML = '';
+                optionsDiv.innerHTML = '';
+                currentStep++;
+                if (currentStep < 5) {
+                    setTimeout(() => {
+                        reasonText.textContent = getRandomReason();
+                        addMessage("Добрый день! Чем мы можем вам помочь?");
+                        showOptions();
+                    }, 5000); // Задержка перед открытием нового чата
+                } else {
+                    addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
+                }
+            }, 1000);
+        }, 2000);
+    }
+}
+
+function init() {
+    reasonText.textContent = getRandomReason();
+    addMessage("Добрый день! Чем мы можем вам помочь?");
+    showOptions();
+}
+
+init();
