@@ -38,7 +38,12 @@ const trollMessages = [
     "Один момент, я уже решаю вашу проблему... А нет, это не ваша категория. До свидания!",
     "Кажется, я нашёл решение! Ой, нет, это не ваш случай. Чат закрыт.",
     "Пожалуйста, подождите, я передаю вас специалисту... Или нет. Вы ошиблись категорией.",
-    "Всё понятно, сейчас помогу... Шучу, вы выбрали не ту категорию. Чат закрывается."
+    "Всё понятно, сейчас помогу... Шучу, вы выбрали не ту категорию. Чат закрывается.",
+    "О, вы почти угадали! Но нет, вы снова облажались.",
+    "Выбирайте быстрее, у меня обед через 5 минут... Шучу, я бот, мне не нужен обед.",
+    "Вы думаете, что сможете выбрать правильно? Ха-ха, нет.",
+    "Выбирайте, выбирайте... Всё равно ошибётесь.",
+    "Я бы вам помог, но вы выбрали не ту категорию. Иди нахуй, короче."
 ];
 
 const fakeHelpMessages = [
@@ -48,6 +53,15 @@ const fakeHelpMessages = [
     "Всё понятно, я уже работаю над вашим запросом...",
     "Один момент, я ищу решение вашей проблемы...",
     "Пожалуйста, подождите, я уточняю детали..."
+];
+
+const closeMessages = [
+    "Чат закрывается...",
+    "До свидания, неудачник!",
+    "Чат закрыт. Попробуйте ещё раз, если хватит терпения.",
+    "Всё, я ухожу. Выбирайте быстрее в следующий раз.",
+    "Чат закрыт. Вы слишком медлительны.",
+    "Чат закрыт. Идите нахуй."
 ];
 
 let currentStep = 0;
@@ -94,48 +108,4 @@ function selectOption(selectedCategory) {
         setTimeout(() => {
             let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
             addMessage(trollMessage);
-            setTimeout(() => {
-                addMessage("Чат закрывается...");
-                setTimeout(() => {
-                    chatBox.innerHTML = '';
-                    optionsDiv.innerHTML = '';
-                    currentStep++;
-                    if (currentStep < 5) {
-                        reasonText.textContent = getRandomReason();
-                        addMessage("Добрый день! Чем мы можем вам помочь?");
-                        showOptions();
-                    } else {
-                        addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
-                    }
-                }, 1000);
-            }, 2000);
-        }, 2000);
-    } else {
-        // Обычный троллинг
-        let trollMessage = trollMessages[Math.floor(Math.random() * trollMessages.length)];
-        addMessage(trollMessage);
-        setTimeout(() => {
-            addMessage("Чат закрывается...");
-            setTimeout(() => {
-                chatBox.innerHTML = '';
-                optionsDiv.innerHTML = '';
-                currentStep++;
-                if (currentStep < 5) {
-                    reasonText.textContent = getRandomReason();
-                    addMessage("Добрый день! Чем мы можем вам помочь?");
-                    showOptions();
-                } else {
-                    addMessage("Нихуя ты опять выбрал неправильно! Попробуй ещё раз, если хватит терпения.");
-                }
-            }, 1000);
-        }, 2000);
-    }
-}
-
-function init() {
-    reasonText.textContent = getRandomReason();
-    addMessage("Добрый день! Чем мы можем вам помочь?");
-    showOptions();
-}
-
-init();
+            setTimeout(() =>
