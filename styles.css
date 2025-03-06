@@ -86,11 +86,12 @@ body {
     font-size: 16px;
     text-align: left;
     color: #121212;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .option-button:hover {
     background-color: #fdd835;
+    transform: scale(1.02);
 }
 
 @keyframes fadeIn {
@@ -98,4 +99,10 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
