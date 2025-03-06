@@ -15,7 +15,7 @@ body {
     width: 100%;
     max-width: 400px;
     background-color: #1e1e1e;
-    border-radius: 15px;
+    border-radius: 25px; /* Больше скруглений */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     display: flex;
@@ -26,10 +26,11 @@ body {
 /* Заголовок чата */
 .chat-header {
     background-color: #ffeb3b;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
     color: #121212;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 25px 25px 0 0; /* Скруглённые углы сверху */
 }
 
 .chat-header h1 {
@@ -47,19 +48,19 @@ body {
 /* Окно чата */
 .chat-box {
     flex: 1;
-    padding: 15px;
+    padding: 20px;
     overflow-y: auto;
     border-bottom: 1px solid #333;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 /* Сообщения */
 .message {
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 15px; /* Больше скруглений */
     max-width: 80%;
     opacity: 0;
     transform: translateY(20px);
@@ -82,17 +83,17 @@ body {
 
 /* Кнопки выбора */
 .options {
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .option-button {
-    padding: 10px;
+    padding: 15px;
     background-color: #ffeb3b;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px; /* Больше скруглений */
     cursor: pointer;
     font-size: 16px;
     text-align: left;
@@ -109,15 +110,15 @@ body {
 /* Кнопки "Написать в поддержку" и "Начать новый чат" */
 .start-chat-button,
 .new-chat-button {
-    padding: 10px;
+    padding: 15px;
     background-color: #ffeb3b;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px; /* Больше скруглений */
     cursor: pointer;
     font-size: 16px;
     text-align: center;
     color: #121212;
-    margin: 15px;
+    margin: 20px;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -135,7 +136,7 @@ body {
 /* Ссылка на автора */
 .author {
     text-align: center;
-    padding: 10px;
+    padding: 15px;
     font-size: 14px;
     color: #ffeb3b;
     opacity: 0.7;
@@ -201,7 +202,7 @@ body {
     }
 
     .chat-box {
-        padding: 10px;
+        padding: 15px;
     }
 
     .option-button {
@@ -211,6 +212,6 @@ body {
     .start-chat-button,
     .new-chat-button {
         font-size: 14px;
-        margin: 10px;
+        margin: 15px;
     }
 }
